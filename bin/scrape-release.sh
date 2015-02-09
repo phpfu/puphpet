@@ -11,7 +11,7 @@ DEST_PATH="${DEST_DIR}/${DEST_FILE}"
 
 
 # Do some sanity check of the current environment.
-EXECUTABLES=("curl" "unzip" "git" "${DIR}/bin/formfind.pl")
+EXECUTABLES=("curl" "unzip" "git")
 for EXEC in "${EXECUTABLES[@]}"; do
 	if ! command -v "${EXEC}" >/dev/null 2>&1; then
 		echo "!! Required command \`${EXEC}\` was not found in PATH. Aborting."
@@ -81,10 +81,6 @@ GIT_COMMIT_MSG="Auto-release. `date`."
 git add -A "${RELEASE_DIR}"
 
 #git commit -m "${GIT_COMMIT_MSG}"
-
-
-
-
 
 
 
