@@ -30,13 +30,14 @@ if [ ! -d "${DEST_DIR}" ]; then
 	mkdir -p "${DEST_DIR}"
 fi
 
-echo "## Submitted request to \`${DEST_DIR}\`."
-# curl -L \ # @TODO: Re-enable.
-#  --silent \
-#  --output "${DEST_PATH}" \
-#  --dump-header "${DIR}/tmp/request_headers.txt" \
-#  --data 'vagrantfile-local[vm][box]=puphpet/debian75-x64' \ # We only need to POST a non-empty <form> to get the ZIP.
-#  $SOURCE_URL
+echo "## Submitted request to \`${SOURCE_URL}\`, saving response to \`${DEST_PATH}\`."
+# We only need to POST a non-empty <form> to get the ZIP.
+curl -L \
+ --silent \
+ --output "${DEST_PATH}" \
+ --dump-header "${DIR}/tmp/request_headers.txt" \
+ --data 'vagrantfile-local[vm][box]=puphpet/debian75-x64' \
+ $SOURCE_URL
 
 #exit 0  #@TODO: Testing
 
@@ -64,13 +65,13 @@ unzip \
 # Get the random folder name inside the extracted folder.
 RANDOM_SUB_DIR=$(cd -P "${TMP_UNZIP_DIR}" >/dev/null 2>&1; echo *)
 
-# if [ -d "${RELEASE_DIR}" ]; then
-# 	echo "## Removing existing release dir \`${RELEASE_DIR}\`."
-# 	rm -rf "${RELEASE_DIR}"
-# fi
-# 
-# echo "## Staging release into \`${RELEASE_DIR}\`."
-# mv -f "${TMP_UNZIP_DIR}/${RANDOM_SUB_DIR}" "${RELEASE_DIR}"
+if [ -d "${RELEASE_DIR}" ]; then
+	echo "## Removing existing release dir \`${RELEASE_DIR}\`."
+	rm -rf "${RELEASE_DIR}"
+fi
+
+echo "## Staging release into \`${RELEASE_DIR}\`."
+mv -f "${TMP_UNZIP_DIR}/${RANDOM_SUB_DIR}" "${RELEASE_DIR}"
 
 #exit 0   #@TODO: Testing
 
