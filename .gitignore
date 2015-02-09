@@ -1,0 +1,5 @@
+# Ignore temp build files.
+/tmp/
+
+# Ignore composer deps.
+/vendor/
