@@ -36,7 +36,6 @@ echo "## Submitted request to \`${DEST_DIR}\`."
 #  --data 'vagrantfile-local[vm][box]=puphpet/debian75-x64' \ # We only need to POST a non-empty <form> to get the ZIP.
 #  $SOURCE_URL
 
-echo "## Done."
 
 #exit 0  #@TODO: Testing
 
@@ -64,6 +63,11 @@ unzip \
 # Get the random folder name inside the extracted folder.
 RANDOM_SUB_DIR=$(cd -P "${TMP_UNZIP_DIR}" >/dev/null 2>&1; echo *)
 
+if [ -d "${RELEASE_DIR}" ]; then
+	echo "## Removing existing release dir \`${RELEASE_DIR}\`."
+	rm -rf "${RELEASE_DIR}"
+fi
+
 mv -f "${TMP_UNZIP_DIR}/${RANDOM_SUB_DIR}" "${RELEASE_DIR}"
 
 
@@ -76,12 +80,17 @@ mv -f "${TMP_UNZIP_DIR}/${RANDOM_SUB_DIR}" "${RELEASE_DIR}"
 # Commit any and all changes to the release/ folder back into git.
 # Use available local information to tag the commit for future identification.
 
+echo "## Committing the updated release to git."
 GIT_COMMIT_MSG="Auto-release. `date`."
-
-git add -A "${RELEASE_DIR}"
-
-#git commit -m "${GIT_COMMIT_MSG}"
+GIT_ACTIVE_BRANCH=$(git rev-parse --quiet --abbrev-ref HEAD 2>/dev/null)
 
 
+git add -A "${RELEASE_DIR}" 2>/dev/null
+
+git commit -m "${GIT_COMMIT_MSG}"
+
+git push --dry-run origin $GIT_ACTIVE_BRANCH
+
+echo "## Done."
 
 
