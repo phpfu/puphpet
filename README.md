@@ -82,7 +82,7 @@ Packagist expects semantic versioning, and this presents a challenge. The puphpe
 
 ## License
 
-MIT. In particular, all PuPHPet work belongs to the original authors. This project is strictly for our own convenience.
+[MIT](https://github.com/loadsys/puphpet-release/blob/master/LICENSE). In particular, all [PuPHPet](http://puphpet.com) work belongs to the original authors. This project is strictly for our own convenience.
 
 
 ## Copyright
