@@ -4,8 +4,9 @@
     "keywords": [
     	"puphpet",
     	"vagrant",
-    	"puppet",
+    	"puppet"
     ],
+    "type": "puphpet-release",
     "license": "MIT",
     "authors": [
         {
@@ -13,5 +14,7 @@
             "email": "beporter@users.sourceforge.net"
         }
     ],
-    "require": {}
+    "require": {
+        "loadsys/puphpet-release-composer-installer": "dev-f/basic-init"
+    }
 }
