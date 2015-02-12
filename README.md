@@ -16,7 +16,7 @@ This package uses a composer custom installer that does very non-standard, typic
 
 This is something that composer [very explicitly](https://github.com/composer/installers#should-we-allow-dynamic-package-types-or-paths-no) says we **should not be doing.** We break this very good and wise rule only because the tools we're working with (vagrant and puphpet) leave us with no other practical choice.
 
-:exclamation: **Using this package will cause any root level `/Vagrantfile` and `/puphpet/` folder in your existing project to be unceremoniously overwritten without notice.** Do not complain about this. This is what this package is designed to do and you've been duly warned of its danger.
+:exclamation: **Using this package will cause any root level `/Vagrantfile` and `/puphpet/` folder in your existing project to be unceremoniously overwritten without notice, and a `/.gitignore` to be created or modified.** Do not complain about this. This is what this package is designed to do and you've been duly warned of its danger.
 
 
 ## Requirements
