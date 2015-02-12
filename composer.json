@@ -15,6 +15,6 @@
         }
     ],
     "require": {
-        "loadsys/puphpet-release-composer-installer": "dev-f/basic-init"
+        "loadsys/puphpet-release-composer-installer": "*"
     }
 }
