@@ -5,7 +5,7 @@
 
 
 # Disables `git push` when set. Comment out to enable `git push`.
-DEBUG=On
+#DEBUG=On
 
 DIR="$( cd -P "$( dirname "$0" )"/.. >/dev/null 2>&1 && pwd )"
 
