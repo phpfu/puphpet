@@ -7,9 +7,14 @@ include puphpet
 include puphpet::params
 
 Exec { path => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ] }
-group { 'puppet':   ensure => present }
-group { 'www-data': ensure => present }
-group { 'www-user': ensure => present }
+
+each( ['puppet', 'www-data', 'www-user'] ) |$group| {
+  if ! defined(Group[$group]) {
+    group { $group:
+      ensure => present
+    }
+  }
+}
 
 case $::ssh_username {
   'root': {
@@ -172,4 +177,9 @@ if $::osfamily == 'debian' {
   })
 
   create_resources('class', { 'locales' => $locales_settings_merged })
+}
+
+# Set to Google's DNS
+class { 'resolvconf':
+  nameserver => [ '8.8.8.8', '8.8.4.4' ],
 }

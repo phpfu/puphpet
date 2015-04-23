@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 describe 'epel::rpm_gpg_key' do
-  context 'operatingsystemmajrelease => 6' do
+  context 'os_maj_version => 6' do
     let :facts do
       default_facts.merge({
         :operatingsystemrelease => '6.4',
-        :operatingsystemmajrelease         => '6',
+        :os_maj_version         => '6',
       })
     end
-
+    
     let :title do
       'EPEL-6'
     end
-
+  
     let :params do
       { :path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6" }
     end
@@ -28,18 +28,18 @@ describe 'epel::rpm_gpg_key' do
     end
   end
 
-  context 'operatingsystemmajrelease => 5' do
+  context 'os_maj_version => 5' do
     let :facts do
       default_facts.merge({
         :operatingsystemrelease => '5.9',
-        :operatingsystemmajrelease         => '5',
+        :os_maj_version         => '5',
       })
     end
-
+    
     let :title do
       'EPEL-5'
     end
-
+  
     let :params do
       { :path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-5" }
     end

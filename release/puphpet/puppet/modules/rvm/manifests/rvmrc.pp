@@ -3,8 +3,7 @@ class rvm::rvmrc(
   $template = 'rvm/rvmrc.erb',
   $umask = 'u=rwx,g=rwx,o=rx',
   $max_time_flag = undef,
-  $autoupdate_flag = '0',
-  $silence_path_mismatch_check_flag = undef) inherits rvm::params {
+  $autoupdate_flag = '0') inherits rvm::params {
 
   include rvm::group
 
