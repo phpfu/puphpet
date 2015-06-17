@@ -1,3 +1,4 @@
+# Package dependencies for Passenger on RedHat
 class rvm::passenger::dependencies::centos {
 
   $version = $::operatingsystem ? {
@@ -6,7 +7,7 @@ class rvm::passenger::dependencies::centos {
   }
 
   case $version {
-    /^6\..*/: {
+    /^[67]\..*/: {
       ensure_packages(['libcurl-devel'])
     }
     default: {

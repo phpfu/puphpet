@@ -1,7 +1,9 @@
 Puppet Module for Ruby Version Manager (RVM)
 ==============================================
 
-[![Build Status](https://maestro.maestrodev.com/api/v1/projects/24/compositions/324/badge/icon)](https://maestro.maestrodev.com/projects/24/compositions/324)
+[![Build Status](https://travis-ci.org/maestrodev/puppet-rvm.svg?branch=maestrodev)](https://travis-ci.org/maestrodev/puppet-rvm)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/maestrodev/rvm.svg)](https://forge.puppetlabs.com/maestrodev/rvm)
+[![Puppet Forge](https://img.shields.io/puppetforge/f/maestrodev/rvm.svg)](https://forge.puppetlabs.com/maestrodev/rvm)
 
 This module handles installing system RVM (also known as multi-user installation
 as root) and using it to install rubies and gems.  Support for installing and
@@ -69,17 +71,23 @@ You can tell RVM to install one or more Ruby versions with:
 
 You should use the full version number.  While the shorthand version may work (e.g. '1.9.2'), the provider will be unable to detect if the correct version is installed.
 
-If rvm fails to install binary rubies you can increase curl's timeout with the `rvm_max_time_flag` in `/etc/rvmrc` or `~/.rvmrc`
+If rvm fails to install binary rubies you can increase curl's timeout with the `rvm_max_time_flag` in `~/.rvmrc` with a fully qualified path to the home directory.
 
     # ensure rvm doesn't timeout finding binary rubies
     # the umask line is the default content when installing rvm if file does not exist
-    file { '/etc/rvmrc':
+    file { '/home/user/rvmrc':
       content => 'umask u=rwx,g=rwx,o=rx
                   export rvm_max_time_flag=20',
       mode    => '0664',
       before  => Class['rvm'],
     }
 
+Or, to configure `/etc/rvmrc` you can use use `Class['rvm::rvmrc]`
+
+    class{ 'rvm::rvmrc':
+      max_time_flag => 20,
+      before  => Class['rvm'],
+    }
 
 ### Installing JRuby from sources
 
@@ -184,6 +192,12 @@ You can configure the ruby versions to be installed and the system users from hi
     rvm::system_users:
       - john
       - doe
+
+    rvm::rvm_gems:
+      'bundler':
+        name: 'bundler'
+        ruby_version: '1.9'
+        ensure: latest
 
 
 ## Building the module

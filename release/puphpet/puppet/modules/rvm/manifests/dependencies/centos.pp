@@ -1,3 +1,4 @@
+# Install packages needed by RVM on RedHat systems when not using autolibs
 class rvm::dependencies::centos {
 
   $version = $::operatingsystem ? {
@@ -6,7 +7,7 @@ class rvm::dependencies::centos {
   }
 
   case $version {
-    /^6\..*/: {
+    /^[67]\..*/: {
       ensure_packages(['libcurl-devel'])
     }
     /^5\..*/: {
