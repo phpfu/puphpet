@@ -72,7 +72,7 @@ fi
 
 echo "## Staging release into \`${RELEASE_DIR}\`."
 mv -f "${TMP_UNZIP_DIR}/${RANDOM_SUB_DIR}" "${RELEASE_DIR}"
-
+rm "${RELEASE_DIR}/puphpet/config.yaml"
 
 
 # Commit any and all changes to the release/ folder back into git.
