@@ -17,6 +17,6 @@
         }
     ],
     "require": {
-        "loadsys/puphpet-release-composer-installer": "*"
+        "phpfu/puphpet-installer": "*"
     }
 }
