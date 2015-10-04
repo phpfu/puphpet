@@ -31,7 +31,7 @@ This is something that composer [very explicitly](https://github.com/composer/in
 Run the following command to include the vagrant environment provided by PuPHPet in your project:
 
 ```shell
-$ composer require --dev loadsys/puphpet-release:~0.0.4
+$ composer require --dev "phpfu/puphpet:@stable"
 ```
 
 

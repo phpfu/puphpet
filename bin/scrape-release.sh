@@ -5,7 +5,7 @@
 
 
 # Disables `git push` when set. Comment out to enable `git push`.
-DEBUG=On
+#DEBUG=On
 
 DIR="$( cd -P "$( dirname "$0" )"/.. >/dev/null 2>&1 && pwd )"
 
@@ -72,7 +72,7 @@ fi
 
 echo "## Staging release into \`${RELEASE_DIR}\`."
 mv -f "${TMP_UNZIP_DIR}/${RANDOM_SUB_DIR}" "${RELEASE_DIR}"
-
+rm "${RELEASE_DIR}/puphpet/config.yaml"
 
 
 # Commit any and all changes to the release/ folder back into git.
